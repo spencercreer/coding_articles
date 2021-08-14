@@ -8,13 +8,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+app.use('/', require('./routes/htmlRoutes'))
 
-app.get('/articles', (req, res) => {
-    res.send('<h1>Articles Page</h1>')
-})
 
 app.listen(PORT, () => {
     console.log(`Server listening on: http://localhost:${PORT}`)

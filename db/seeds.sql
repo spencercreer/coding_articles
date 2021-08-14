@@ -1,0 +1,1 @@
+INSERT INTO coding_articles (title, url, description) VALUES ("Express JS Crash Course", "https://www.youtube.com/watch?v=L72fhGm1tfE", "A great Express.js tutorial on express servers, middleware, api routes, and React.");
