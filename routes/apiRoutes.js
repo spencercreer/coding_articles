@@ -37,4 +37,34 @@ router.post('/', (req, res) => {
     res.json(articles)
 })
 
+// Update article
+router.put('/:id', (req, res) => {
+    const found = articles.some(article => article.id === parseInt(req.params.id))
+
+    if(found) {
+        const updArticle = req.body
+        articles.forEach(article => {
+            if(article.id === parseInt(req.params.id)) {
+                article.title = updArticle.title ? updArticle.title : article.title
+                article.url = updArticle.url ? updArticle.url : article.url
+
+                res.json({ msg: 'Article updated', article })
+            }
+        })
+    } else {
+        res.status(400).json({ msg: `No article with the id of ${req.params.id}`})
+    }
+})
+
+// Delete article
+router.delete('/:id', (req, res) => {
+    const found = articles.some(article => article.id === parseInt(req.params.id))
+
+    if(found) {
+        res.json({ msg: 'Article deleted', articles: articles.filter(article => article.id !== parseInt(req.params.id))})
+    } else {
+        res.status(400).json({ msg: `No article with the id of ${req.params.id}`})
+    }
+})
+
 module.exports = router
