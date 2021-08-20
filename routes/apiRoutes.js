@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         author: req.body.author,
         url: req.body.url,
         description: req.body.description,
-        watched: req.body.watched
+        read: req.body.read
     }
 
     if(!newArticle.title || !newArticle.url) {
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
     }
 
     articles.push(newArticle);
-    res.json(articles)
+    res.redirect('/')
 })
 
 // Update article
@@ -45,10 +45,9 @@ router.put('/:id', (req, res) => {
         const updArticle = req.body
         articles.forEach(article => {
             if(article.id === parseInt(req.params.id)) {
-                article.title = updArticle.title ? updArticle.title : article.title
-                article.url = updArticle.url ? updArticle.url : article.url
+                article.read = updArticle.read ? updArticle.read : article.read
 
-                res.json({ msg: 'Article updated', article })
+                res.redirect('/')
             }
         })
     } else {

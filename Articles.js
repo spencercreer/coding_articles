@@ -4,16 +4,16 @@ const articles = [
         title: 'Express JS Crash Course',
         author: 'Traversy Media',
         url: 'https://www.youtube.com/watch?v=L72fhGm1tfE',
-        description: 'An Express.js tutorial on express servers, middleware, api routes, and React.',
-        watched: false
+        description: 'An excellent Express.js youtube tutorial that covers express servers, middleware, api routes, and handlebars.',
+        read: true
     },
     {
         id: 2,
         title: 'MySQL Crash Course',
         author: 'Traversy Media',
         url: 'https://www.youtube.com/watch?v=9ylj9NR0Lcg',
-        description: 'A MySQL tutorial.',
-        watched: false,
+        description: 'A MySQL youtube tutorial.',
+        read: false,
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const articles = [
         author: 'Free Code Camp',
         url: 'https://www.freecodecamp.org/news/learn-big-o-notation/',
         description: 'A tutorial on Big O notation.',
-        watched: false
+        read: false
     }
 ]
 
