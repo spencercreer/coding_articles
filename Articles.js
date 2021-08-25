@@ -12,7 +12,7 @@ const articles = [
         title: 'MySQL Crash Course',
         author: 'Traversy Media',
         url: 'https://www.youtube.com/watch?v=9ylj9NR0Lcg',
-        description: 'A MySQL youtube tutorial.',
+        description: 'A MySQL youtube tutorial that covers setting up users, and navigating the MySQL command line and Workbench.',
         read: false,
     },
     {

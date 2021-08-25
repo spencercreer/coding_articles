@@ -2,10 +2,18 @@ const express = require('express')
 const uuid = require('uuid')
 const router = express.Router()
 const articles = require('../Articles')
+const connection = require('../config/connection')
 
 // Get all articles
 router.get('/', (req, res) => {
-    res.json(articles)
+    let sql = 'SELECT * FROM articles'
+    let query = connection.query(sql, (err, result) => {
+        if(err) throw err
+        console.log(result)
+        console.log('success')
+
+        res.redirect('/')
+    })
 })
 
 // Get single article
@@ -21,20 +29,25 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const newArticle = {
-        id: uuid.v4(),
         title: req.body.title,
         author: req.body.author,
         url: req.body.url,
         description: req.body.description,
-        read: req.body.read
+        //read: req.body.read
     }
 
     if(!newArticle.title || !newArticle.url) {
         return res.status(400).json({ msg: 'Please include a title and url' })
     }
 
-    articles.push(newArticle);
-    res.redirect('/')
+    let sql = 'INSERT INTO articles SET ?'
+    let query = connection.query(sql, newArticle, (err, result) => {
+        if(err) throw err
+        console.log(result)
+        console.log('success')
+
+        res.redirect('/')
+    })
 })
 
 // Update article
