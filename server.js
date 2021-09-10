@@ -1,40 +1,38 @@
+// Require dependencies
 const express = require('express')
-const mysql = require('mysql')
-const path = require('path')
-const connection = require('./config/connection')
+const Handlebars = require('handlebars')
 const exphbs = require('express-handlebars')
-//const articles = require('./Articles')
+const bodyParser = require('body-parser')
+const path = require('path')
+require('dotenv').config()
 
-const app = express()
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
-const PORT = process.env.PORT || 8080
+const connection = require('./config/connection')
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
+//Test db connection
+connection.authenticate()
+    .then(() => console.log('Database articles_db connected...'))
+    .catch(err => console.log('db.authenticate error: ' + err))
+
+const app = express();
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
-// Home page route 
-// move to html routes file
-app.get('/', (req, res) => {
-    let sql = 'SELECT * FROM articles'
-    let query = connection.query(sql, (err, results, fields) => {
-        if(err) throw err
-        let articles = JSON.parse(JSON.stringify(results))
-        console.log('success')
-
-        res.render('index', {
-            title: 'Coding Articles',
-            articles
-        })
-    })
-})
-
+// Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/api/articles', require('./routes/apiRoutes'))
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+}))
+app.set('view engine', 'handlebars')
 
-app.listen(PORT, () => {
-    console.log(`Server listening on: http://localhost:${PORT}`)
-})
+// Initialize PORT
+const PORT = process.env.PORT || 5000
+
+app.use(require('./controller/'))
+
+//Listen
+app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`))
