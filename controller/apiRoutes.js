@@ -3,13 +3,7 @@ const Article = require('../models/Article')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-router.get('/articles', (req, res) => {
-   Article.findAll()
-        .then(articles => res.render('index', {articles}))
-        .catch(err => console.log(err))
-})
-
-router.post('/add', (req, res) =>{
+router.post('/add', (req, res) => {
     let { title, author, body, url, technologies } = req.body
     Article.create({
         title,
@@ -19,8 +13,14 @@ router.post('/add', (req, res) =>{
         technologies,
 
     })
-        .then(article => res.redirect('/articles'))
+        .then(article => res.redirect('/'))
         .catch(err => console.log(err))
 })
+
+// router.delete('/delete/:id', (req, res) => {
+//     Article.destroy({ where: { id: req.params.id }})
+//         .then(article => res.redirect('/articles'))
+//         .catch(err => console.log(err))
+// })
 
 module.exports = router

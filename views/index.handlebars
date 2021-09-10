@@ -4,38 +4,19 @@
             <h1 class="display-3">Coding Articles</h1>
             <p class="lead">A coding article archive for saving favorite coding articles and videos.</p>
             <hr class="my-2">
-            <form action="/api/add" method="POST">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId"
-                        placeholder="">
-                    <label for="author">Author</label>
-                    <input type="text" class="form-control" name="author" id="author" aria-describedby="helpId"
-                        placeholder="">
-                    <label for="url">URL</label>
-                    <input type="text" class="form-control" name="url" id="url" aria-describedby="helpId"
-                        placeholder="">
-                    <label for="body">Description</label>
-                    <textarea class="form-control" name="body" id="body" rows="2"></textarea>
-                    <label for="technologies">Technologies</label>
-                    <input type="text" class="form-control" name="technologies" id="technologies" aria-describedby="helpId"
-                        placeholder="">
+            {{#each articles}}
+            <div class="card">
+                <div class="card-body pb-1">
+                    <h4 class="card-title" style="display: inline;">{{this.title}}</h4>
+                    <a href="/api/delete/1" style="float: right; color: red; font-weight: bold;">X</a>
+                    <p class="author">Author: {{this.author}}</p>
                 </div>
-                <input type="submit" value="Add Article" class="btn btn-primary btn-lg">
-            </form>
+                <div class="card-body pt-0">
+                    <p class="article-description">Description: {{this.body}}</p>
+                    <a href={{this.url}} class="url" target="_blank">{{this.url}}</a>
+                </div>
+            </div>
+            {{/each}}
         </div>
     </div>
-    {{#each articles}}
-    <div class="card">
-        <div class="card-body pb-1">
-            <h4 class="card-title">{{this.title}}</h4>
-            <a>delete</a>
-            <p class="author">Author: {{this.author}}</p>
-        </div>
-        <div class="card-body pt-0">
-            <p class="article-description">Description: {{this.body}}</p>
-            <a href={{this.url}} class="url" target="_blank">{{this.url}}</a>
-        </div>
-    </div>
-    {{/each}}
 </div>
