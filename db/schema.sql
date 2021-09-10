@@ -8,7 +8,7 @@ CREATE TABLE articles(
     author VARCHAR(255),
     body VARCHAR(255),
     url VARCHAR(255),
-    technologies VARCHAR(),
+    technologies VARCHAR(255),
     createdAt DATETIME NOT NULL,
     updatedAt DATETIME NOT NULL
 );
