@@ -47,10 +47,10 @@ To install necessary dependencies, run the following command:
   ```
 
 ## Tests
-To run tests, run the following command:
+Tests are written using Frisby and Jest. To run tests, start the server and run the following command:
 
   ```
-  TBD
+  npm test
   ```
     
 ## Contribute
