@@ -1,5 +1,10 @@
+<p>
+<img src="./public/assets/logo_transparent.png" style="width: 50px; float: right; padding: 0px 5px 0px 0px;">
+</p>
+
 # Coding Articles
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 
 ## Description
 A MySQL database for storing your favorite coding articles
