@@ -3,6 +3,7 @@ const Article = require('../models/Article')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
+// add article
 router.post('/add', (req, res) => {
     let { title, author, body, url, technologies } = req.body
     Article.create({
@@ -17,6 +18,7 @@ router.post('/add', (req, res) => {
         .catch(err => console.log(err))
 })
 
+// delete article
 router.delete(`/delete/:id`, (req, res) => {
     Article.destroy({
         where: {
@@ -27,5 +29,9 @@ router.delete(`/delete/:id`, (req, res) => {
         .catch(err => console.log(err))
 })
 
+// update article
+// router.put('/update/:id', (req, res) => {
+//     console.log(req.params.id)
+// })
 
 module.exports = router
