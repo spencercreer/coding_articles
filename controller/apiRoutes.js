@@ -17,10 +17,15 @@ router.post('/add', (req, res) => {
         .catch(err => console.log(err))
 })
 
-// router.delete('/delete/:id', (req, res) => {
-//     Article.destroy({ where: { id: req.params.id }})
-//         .then(article => res.redirect('/articles'))
-//         .catch(err => console.log(err))
-// })
+router.delete(`/delete/:id`, (req, res) => {
+    Article.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(res.status(204).end())
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router
