@@ -1,5 +1,5 @@
 <p>
-<img src="./public/assets/logo_transparent.png" align="right" style="width: 50px; padding: 0px 5px 0px 0px;">
+<img src="./public/assets/logo_transparent.png" align="right" style="max-width: 50px; padding: 0px 5px 0px 0px;">
 </p>
 
 # Coding Articles
